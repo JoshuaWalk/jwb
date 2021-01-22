@@ -4,7 +4,9 @@ for c in word:
     if c.isalnum():
         clean = clean + c.lower()
 reverse = clean[::-1]
-if clean == reverse:
+if clean == "":
+    print("no valid characters entered")
+elif clean == reverse:
     print(True) 
 else:
     print(False)
