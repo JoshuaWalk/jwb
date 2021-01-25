@@ -5,9 +5,10 @@ present = datetime.now()
 while True:
     try:
       bd = input("input birthdate (YYYY-MM-DD) \ntype 'stop' to close\n")
+      birthday = bd[:4] + '-' + bd[5:7] + '-' + bd[8:]
       if bd == "stop":
           break
-      bdate = datetime.strptime(bd, '%Y-%m-%d')
+      bdate = datetime.strptime(birthday, '%Y-%m-%d')
       if bdate > present:
           print("use a date from the past")
           continue    
