@@ -46,14 +46,3 @@ class BlackjackPlayer(player.Player):
             self.aceCheck()
             if self.total > 21:
                 self.isBusted = True
-    
-        
-    
-blackjack = player.deck.Deck()
-player = BlackjackPlayer('josh')
-
-blackjack.build()
-blackjack.shuffle()
-
-player.hit(blackjack)
-player.showHand()
