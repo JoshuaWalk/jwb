@@ -7,23 +7,16 @@ class BlackjackPlayer(player.Player):
         self.total = 0
         self.isBusted = False
 
-    def turn(self, decision):
-        if decision == 'hit':
-            self.aceCheck()
-            self.hit()
-            self.turn()
-        else:
-            self.stand()
-
     def hit(self, deck):
         card = self.drawCard(deck)
         if card.value == 'Ace':
             self.aceHit()
-        if card.value == 'King' or card.value == 'Queen' or card.value == 'Jack':
-            self.total + 10
+        elif card.value == 'King' or card.value == 'Queen' or card.value == 'Jack':
+            self.total += 10
         else:
             self.total += card.value
         self.didBust()
+        card.show()
 
     def stand(self):
         return self
