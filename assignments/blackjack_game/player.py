@@ -9,7 +9,7 @@ class Player:
     def showHand(self):
         print(self.name, "'s hand:")
         for card in self.hand:
-            print(card.show())
+            card.show()
         print('HAND TOTAL: ', self.total)
 
     def drawCard(self, deck):

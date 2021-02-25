@@ -5,20 +5,11 @@ class BlackjackDealer(blackjack_player.BlackjackPlayer):
         blackjack_player.BlackjackPlayer.__init__(self, 'Dealer')
         self.total = 0
 
-    def hiddenHit(self, deck):
-        card = self.drawCard(deck)
-        if card.value == 'Ace':
-            self.aceHit()
-        elif card.value == 'King' or card.value == 'Queen' or card.value == 'Jack':
-            self.total += 10
-        else:
-            self.total += card.value
-        self.didBust()  
-
-    def turn(self, deck):
-        if self.total < 17:
-            self.hiddenHit(deck)
-            self.turn(deck)
-            self.showHand()
-        else:
-            pass
+    def showHand(self):
+        for card in self.hand:
+            if len(self.hand) == 2 and card == self.hand[0]:
+                print('hidden card')
+                continue
+            card.show()
+        if len(self.hand) >= 3:
+            print('HAND TOTAL: ', self.total)
