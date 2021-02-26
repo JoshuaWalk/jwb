@@ -1,4 +1,4 @@
-import player, deck
+import deck
 
 class Game:
     def __init__(self, deck, *args):
