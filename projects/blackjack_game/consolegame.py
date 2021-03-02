@@ -1,7 +1,8 @@
-import blackjack, blackjack_player
+from blackjack import *
+
 
 name = input('Enter your name to play blackjack:\n')
-player = blackjack_player.Player(name)
-game = blackjack.Blackjack(player)
-game.playGame()
+player = Player(name)
+game = Blackjack(player)
+game.play_game()
 

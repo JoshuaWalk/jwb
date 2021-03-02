@@ -1,4 +1,14 @@
 class Player:
+    '''
+    attributes:
+        name (str)
+        hand (list)
+        total (num)
+        isBusted (bool)
+    
+    methods:
+        showHand - calls show method on every card in hand
+    '''
     def __init__(self, name):
         self.name = name
         self.hand = []
@@ -13,6 +23,17 @@ class Player:
 
 
 class BlackjackDealer(Player):
+    '''
+    attributes:
+        name (str)
+        hand (list)
+        total (num)
+        isBusted (bool)
+        hide_card (bool)
+    
+    methods:
+        showHand - calls show method on every card in hand
+    '''
     def __init__(self):
         Player.__init__(self, 'Dealer')
         self.hide_card = True
