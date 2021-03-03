@@ -51,8 +51,10 @@ class Deck:
             r = random.randint(0, len(self.cards)-1)
             self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
     
-    def clear(self):
+    def reset(self):
         self.cards = []
+        self.build()
+        self.shuffle()
         
     def show(self):
         for card in self.cards:

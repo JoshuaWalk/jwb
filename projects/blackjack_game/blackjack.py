@@ -34,9 +34,9 @@ class Blackjack(Game):
         busted_ace
         busted_ace_check
         are_players_busted
-        are_players_busted
         finalBustCheck  
     '''
+
     def __init__(self, *player_list):
         self.player_list = [*player_list]
         self.deck = Deck()
@@ -71,48 +71,57 @@ class Blackjack(Game):
             self.player_turn(player)
         self.dealer_turn()
 
-    def determine_winner(self):
-        for player in self.player_list:
-            if player.total <= 21:
-                if player.total < self.winner.total:
-                    self.winner = player
-        print(self.winner.name, ' wins!!!')
+    def is_winning(self, player):
+        if player.total <= 21 and player.total > self.winner.total:
+            self.winner = player
+    
+    def display_winner(self):
+        print(f'\n{self.winner.name} wins!')
+        self.winner.showHand()
 
     def play_game(self):
         self.ready_deck()
         self.deal()
         self.round()
-        self.determine_winner()
+        self.display_winner()
+
+    def reset_game(self):
+        self.winner = self.dealer
+        self.dealer.restart()
+        for player in self.player_list:
+            player.restart()
+        self.play_game()
 
 # DEALER TURN FUNCTIONS
 
     def dealer_turn(self):
-        if self.dealer.total < 17:
+        if self.dealer.total < 17 and self.dealer.total < self.winner.total:
             self.hit(self.dealer)
             self.dealer.showHand()
             self.dealer_play()
 
     def dealer_play(self):
         for player in self.player_list:
-            if player.isBusted == False:
+            if player.is_busted == False:
                 self.dealer_turn()
             else:
-                self.determine_winner()
+                self.is_winning(self.dealer)
 
 # PLAYER TURN FUNCTIONS
 
     def player_turn(self, player):
-        decision = input('Hit or Stand?\n')
-        if decision.lower() == 'hit':
-            self.hit(player)
-            self.player_turn(player)
-            player.showHand()
-        elif decision.lower() == 'stand':
-            pass
-        elif player.total > 21:
+        if player.is_busted == True:
             pass
         else:
-            ValueError
+            decision = input('Hit or Stand?\n')
+            if decision.lower() == 'hit':
+                self.hit(player)
+                self.player_turn(player)
+                player.showHand()
+            elif decision.lower() == 'stand':
+                self.is_winning(player)
+            else:
+                ValueError
 
     def hit(self, player):
         self.draw(player)
@@ -121,6 +130,7 @@ class Blackjack(Game):
     
 # HIT/ACE/BUST CHECKS
 
+    #player hits
     def add_card_to_total(self, card, player):
         if card.value == 'Ace':
             self.ace_hit(card, player)
@@ -128,32 +138,37 @@ class Blackjack(Game):
             player.total += 10
         else:
             player.total += card.value
-        self.finalBustCheck(player)
+        self.is_player_busted(player)
 
+    #if a player pulls an ace
     def ace_hit(self, card, player):
         if player.total + 11 > 21:
             player.total += 1 
-            card.status = True
+            card.is_used = True
         else:
             player.total += 11
 
+    #if a player busts
+
     def busted_ace(self, player):
         for card in player.hand:
-            if card.value == 'Ace' and card.status == False:
+            if card.value == 'Ace' and card.is_used == False:
+                if player.total <= 21: break
                 player.total -= 10
-                card.is_used = True  
-
-    def busted_ace_check(self, player):
-        if player.total > 21:
+                card.is_used = True
+                
+    def is_player_busted(self, player):
             self.busted_ace(player)
-    
-    def are_players_busted(self):
-        for player in self.player_list:
             if player.total > 21:
-                player.isBusted = True
+                player.is_busted = True
 
-    def finalBustCheck(self, player):
-        self.busted_ace_check(player)
-        self.are_players_busted()
 
-poop = Blackjack()
+    
+
+    
+
+    
+    
+    
+
+    
