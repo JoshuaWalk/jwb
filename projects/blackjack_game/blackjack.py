@@ -20,8 +20,9 @@ class Blackjack(Game):
 
         deal - deals 2 cards to every player,
         round - every player takes a turn,
-        determine_winner - evaluate scores,
-        play_game - ready_deck, deal, round, determine_winner,
+        reset_game - refreshes everyones totals + hands + deck + starts new deal,
+        is_winning - determines if a player is leading,
+        display_winner - self explanitory
 
         dealer_turn - dealer hits,
         dealer_play - dealer decides what to do,
@@ -29,12 +30,11 @@ class Blackjack(Game):
         player_turn - gets input from player decision,
         hit - adds a card to players hand and implements logic,
 
-        add_card_to_total - the following methods need to be simplified
-        ace_hit
-        busted_ace
-        busted_ace_check
-        are_players_busted
-        finalBustCheck  
+        add_card_to_total,
+        ace_hit,
+        busted_ace,
+        is_player_busted,
+ 
     '''
 
     def __init__(self, *player_list):
@@ -79,18 +79,15 @@ class Blackjack(Game):
         print(f'\n{self.winner.name} wins!')
         self.winner.showHand()
 
-    def play_game(self):
-        self.ready_deck()
-        self.deal()
-        self.round()
-        self.display_winner()
-
     def reset_game(self):
         self.winner = self.dealer
         self.dealer.restart()
         for player in self.player_list:
             player.restart()
-        self.play_game()
+        self.ready_deck()
+        self.deal()
+        self.round()
+        self.display_winner
 
 # DEALER TURN FUNCTIONS
 

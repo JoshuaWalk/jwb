@@ -12,4 +12,4 @@ while True:
         continue
     elif decision == 'n':
         break
-    ValueError("please enter 'y' or 'n'")
+    ValueError(print("please enter 'y' or 'n'"))
