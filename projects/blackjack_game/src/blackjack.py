@@ -87,7 +87,7 @@ class Blackjack(Game):
         self.ready_deck()
         self.deal()
         self.round()
-        self.display_winner
+        self.display_winner()
 
 # DEALER TURN FUNCTIONS
 

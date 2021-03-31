@@ -17,9 +17,10 @@ class Player:
 
     def showHand(self):
         print(self.name, "'s hand:")
+        print('HAND TOTAL: ', self.total, '\n')
         for card in self.hand:
             card.show()
-        print('HAND TOTAL: ', self.total, '\n')
+        
 
     def restart(self):
         self.hand = []
@@ -46,6 +47,8 @@ class BlackjackDealer(Player):
 
     def showHand(self):
         print("\nDealer's Hand:")
+        if self.hide_card == False:
+            print('DEALER TOTAL: ', self.total, '\n')
         for card in self.hand:
             if self.hide_card == True:
                 print('hidden card')
