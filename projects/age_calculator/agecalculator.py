@@ -1,32 +1,34 @@
 from datetime import datetime, timedelta
 import math
 
-def getAge(birthdate):
-    present = datetime.now()
-    bdate = datetime.strptime(birthdate, '%Y-%m-%d')
-    age = present - bdate
-    if age.days < 0:
-        print('are you from the future?')
-    return age.days
+class AgeCalculator:
+    def __init__(self, date, now=datetime.now()):
+        self.date = date
+        self.now = now
+        self.difference = 0
 
-def getAgeSeconds(age):
-    return age * 24 * 60 * 60
+    def set_difference(self):
+        date = datetime.strptime(self.date, "%Y-%m-%d")
+        difference = self.now - date
+        self.difference = difference.days
 
-def getAgeMinutes(age):
-    return age * 24 * 60
+    def age_seconds(self):
+        return ("seconds", self.difference * 24 * 60 * 60)
 
-def getAgeHours(age):
-    return age * 24
+    def age_minutes(self):
+        return ("minutes", self.difference * 24 * 60)
 
-def getAgeWeeks(age):
-    return math.floor(age / 7)
+    def age_hours(self):
+        return ("hours", self.difference * 24)
+    
+    def age_days(self):
+        return ("days", self.difference)
 
-def getAgeMonths(age):
-    return math.floor(age / 30.5)
+    def age_weeks(self):
+        return ("weeks", math.floor(self.difference / 7))
 
-
-getAge('1997-04-08')
-getAge('2021-05-05')
-
+    def age_months(self):
+        return ("months", math.floor(self.difference / 30.5))
+    
 
 
