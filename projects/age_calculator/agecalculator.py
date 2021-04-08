@@ -9,7 +9,8 @@ class AgeCalculator:
 
     def set_difference(self):
         date = datetime.strptime(self.date, "%Y-%m-%d")
-        difference = self.now - date
+        now = datetime.strptime(self.now, "%Y-%m-%d")
+        difference = now - date
         self.difference = difference.days
 
     def age_seconds(self):
