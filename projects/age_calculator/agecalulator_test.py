@@ -1,5 +1,8 @@
 import pytest
 from agecalculator import *
+from params import *
+
+# UNUSED FIXTURES
 
 @pytest.fixture
 def date_one():
@@ -9,16 +12,58 @@ def date_one():
 
 @pytest.fixture
 def date_two():
-    return AgeCalculator('1932-08-16', '2021-04-07')
+    date = AgeCalculator('1932-08-16', '2021-04-09')
+    date.set_difference()
+    return date
 
 @pytest.fixture
-def date_old_one():
-    return AgeCalculator('1321-11-09', '2021-04-07')
+def date_old():
+    date = AgeCalculator('1321-11-09', '2021-04-09')
+    date.set_difference()
+    return date
 
 @pytest.fixture
-def age_future_one():
-    return AgeCalculator('2055-02-28', '2021-04-07')
+def age_future():
+    date = AgeCalculator('2055-02-28', '2021-04-07')
+    date.set_difference()
+    return date
 
-@pytest.mark.birthday
-def test_days_one(age_one):
-    assert age_one.age_days() == ("days", 8765)
+# TESTS
+
+@pytest.mark.parametrize("a, b, out", dates_seconds)
+def test_seconds(a, b, out):
+    calc = AgeCalculator(a, b)
+    calc.set_difference()
+    assert calc.age_seconds() == out
+
+@pytest.mark.parametrize("a, b, out", dates_minutes)
+def test_minutes(a, b, out):
+    calc = AgeCalculator(a, b)
+    calc.set_difference()
+    assert calc.age_minutes() == out
+
+@pytest.mark.parametrize("a, b, out", dates_hours)
+def test_hours(a, b, out):
+    calc = AgeCalculator(a, b)
+    calc.set_difference()
+    assert calc.age_hours() == out
+
+@pytest.mark.parametrize("a, b, out", dates_days)
+def test_days(a, b, out):
+    calc = AgeCalculator(a, b)
+    calc.set_difference()
+    assert calc.age_days() == out
+
+@pytest.mark.parametrize("a, b, out", dates_weeks)
+def test_weeks(a, b, out):
+    calc = AgeCalculator(a, b)
+    calc.set_difference()
+    assert calc.age_weeks() == out
+
+@pytest.mark.parametrize("a, b, out", dates_months)
+def test_months(a, b, out):
+    calc = AgeCalculator(a, b)
+    calc.set_difference()
+    assert calc.age_months() == out
+
+
