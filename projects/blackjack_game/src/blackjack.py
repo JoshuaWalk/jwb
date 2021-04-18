@@ -1,6 +1,6 @@
-from game import *
-from blackjack_player import *
-from deck import *
+from src.game import *
+from src.blackjack_player import *
+from src.deck import *
 
 
 class Blackjack(Game):

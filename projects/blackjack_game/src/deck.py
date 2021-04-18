@@ -16,7 +16,7 @@ class Card:
         self.is_used = False
 
     def show(self):
-        print(f'{self.value} of {self.suit}')
+        return(f'{self.value} of {self.suit}')
 
 
 
@@ -34,13 +34,16 @@ class Deck:
     """
     def __init__(self):
         self.cards = []
-    
+
+    def add_card(self, s, v):
+        self.cards.append(Card(s, v))
+
     def build(self):
         suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
         values = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King']
         for s in suits:
             for v in values:
-                self.cards.append(Card(s, v))
+                self.add_card(s, v)
 
     def draw(self):
         return self.cards.pop()

@@ -1,4 +1,4 @@
-from blackjack import *
+from src.blackjack import *
 
 
 name = input('Enter your name to play blackjack:\n')
