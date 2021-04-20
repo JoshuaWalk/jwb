@@ -1,20 +1,19 @@
-import src.deck
+from src.blackjack_player import Player
 
 class Game:
     def __init__(self, deck, *args):
         self.deck = deck
-        self.players = list(*args)
+        self.players = [*args]
     
-    def addPlayer(self, player):
-        self.players.append(player)
+    def init_players(self):
+        players = [Player(name) for name in self.players]
+        self.players = players
 
-    def playRound(self):
+    def add_player(self, player):
+        self.players.append(Player(player))
+
+    def show_players(self):
         for player in self.players:
-            player.turn()
+            return player.name
 
-    def showPlayers(self):
-        for player in self.players:
-            i = 1
-            return 'Player {}'.format(i)
 
-    

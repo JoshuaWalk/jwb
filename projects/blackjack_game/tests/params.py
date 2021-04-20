@@ -7,3 +7,8 @@ low_cards = [
     ('Spades', 'Ace', 'Ace of Spades'),
     ('Clubs', 3, '3 of Clubs'),
 ]
+
+# BASE GAME MODULE PARAMS
+player_names = [('Josh'),('Kevin'),('Richard'),('Lindsey'),('Brandon')]
+name_list = ['Josh', 'Kevin', 'Richard', 'Lindsey', 'Brandon']
+full_name_list = ['Josh', 'Kevin', 'Richard', 'Lindsey', 'Brandon', 'Frankie']
