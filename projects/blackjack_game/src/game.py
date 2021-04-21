@@ -15,5 +15,3 @@ class Game:
     def show_players(self):
         for player in self.players:
             return player.name
-
-
